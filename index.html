@@ -1,0 +1,1236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Photobooth&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Quicksand:wght@300;400;500;600&amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>* { box-sizing: border-box; margin: 0; padding: 0; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-family: 'Quicksand', sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #722F37 0%, #5C1A25 50%, #4A1220 100%);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #f5f0e8;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>min-height: 100vh;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.main-wrapper {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>max-width: 680px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 auto;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>h1, h2, h3 {<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-family: 'Playfair Display', serif;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #f5f0e8;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>h1 { font-size: 2.6rem; margin-bottom: 0.8rem; letter-spacing: 2px; font-style: italic; text-shadow: 0 2px 8px rgba(0,0,0,0.4); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>h2 { font-size: 1.5rem; margin: 2rem 0 1.2rem; letter-spacing: 1px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>h3 { font-size: 1.2rem; margin-bottom: 0.8rem; }</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.step { display: none; width: 100%; animation: fadeIn 0.5s ease; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.step.active { display: block; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.subtitle { font-size: 1rem; color: #e8dfd0; margin-bottom: 2.5rem; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.btn {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: block; width: 100%; padding: 18px; margin: 12px 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #f5f0e8; color: #5C1A25; border: 2px solid #f5f0e8;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1rem; font-family: 'Quicksand', sans-serif; font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer; transition: all 0.3s; letter-spacing: 2px; text-transform: uppercase;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.btn:hover { background: #e8dfd0; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.3); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.btn.secondary { background: transparent; color: #f5f0e8; border-color: rgba(245,240,232,0.5); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.btn.secondary:hover { background: rgba(245,240,232,0.15); border-color: #f5f0e8; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.btn.small { padding: 8px 14px; font-size: 0.85rem; width: auto; display: inline-block; margin: 5px; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>/* Number Selection */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.number-selection {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(245,240,232,0.1);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 20px 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 2px solid rgba(201,184,164,0.3);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.number-grid {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: grid;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>grid-template-columns: 1fr 1fr;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>gap: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.number-option {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 25px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 3px solid rgba(201,184,164,0.5);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transition: all 0.3s;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(245,240,232,0.08);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-family: 'Quicksand', sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.number-option:hover, .number-option.selected {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-color: #f5f0e8;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(245,240,232,0.2);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transform: translateY(-2px);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.number-option h4 {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.8rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 5px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #f5f0e8;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-family: 'Playfair Display', serif;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.number-option p {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #d4c9b8;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>/* Layout Grid Selection */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.layout-selection {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(245,240,232,0.1);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 20px 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 2px solid rgba(201,184,164,0.3);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.layout-grid {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: grid;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>gap: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.layout-option {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(245,240,232,0.12);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transition: all 0.3s;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 3px solid transparent;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.layout-option:hover { transform: translateY(-3px); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.layout-option.selected { border-color: #f5f0e8; background: rgba(245,240,232,0.2); }</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.layout-visual {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #1a1a1a;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>height: 120px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.layout-photo {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #8b4553 0%, #6b2f3a 100%);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 2px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 2px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 2px solid #2a2a2a;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>/* Vertical Strip: 1 column × N rows */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.vertical-strip-4 { display: grid; grid-template-rows: repeat(4, 1fr); grid-template-columns: 1fr; gap: 2px; height: 100%; padding: 2px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.vertical-strip-6 { display: grid; grid-template-rows: repeat(6, 1fr); grid-template-columns: 1fr; gap: 2px; height: 100%; padding: 2px; }</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>/* Landscape: 1 row × N columns */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.landscape-row-4 { display: grid; grid-template-rows: 1fr; grid-template-columns: repeat(4, 1fr); gap: 2px; height: 100%; padding: 2px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.landscape-row-6 { display: grid; grid-template-rows: 1fr; grid-template-columns: repeat(6, 1fr); gap: 2px; height: 100%; padding: 2px; }</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>/* Square Grids */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); gap: 2px; height: 100%; padding: 2px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.grid-3x3 { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 2px; height: 100%; padding: 2px; }</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>/* Separate Photos - Staggered Layout */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.separate-photos-4 { position: relative; height: 100%; padding: 4px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.separate-photos-4 .sep-photo { position: absolute; width: 40%; height: 35%; background: linear-gradient(135deg, #8b4553 0%, #6b2f3a 100%); border: 2px solid #2a2a2a; border-radius: 3px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.separate-photos-4 .sep-photo:nth-child(1) { top: 5%; left: 30%; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.separate-photos-4 .sep-photo:nth-child(2) { top: 35%; left: 5%; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.separate-photos-4 .sep-photo:nth-child(3) { top: 35%; right: 5%; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.separate-photos-4 .sep-photo:nth-child(4) { bottom: 5%; left: 30%; }</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.separate-photos-6 { position: relative; height: 100%; padding: 4px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.separate-photos-6 .sep-photo { position: absolute; width: 35%; height: 30%; background: linear-gradient(135deg, #8b4553 0%, #6b2f3a 100%); border: 2px solid #2a2a2a; border-radius: 3px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.separate-photos-6 .sep-photo:nth-child(1) { top: 5%; left: 32.5%; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.separate-photos-6 .sep-photo:nth-child(2) { top: 30%; left: 5%; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.separate-photos-6 .sep-photo:nth-child(3) { top: 30%; right: 5%; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.separate-photos-6 .sep-photo:nth-child(4) { top: 55%; left: 15%; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.separate-photos-6 .sep-photo:nth-child(5) { top: 55%; right: 15%; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.separate-photos-6 .sep-photo:nth-child(6) { bottom: 5%; left: 32.5%; }</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.layout-title { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; color: #f5f0e8; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.layout-desc { font-size: 0.75rem; color: #d4c9b8; line-height: 1.3; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.video-wrapper { position: relative; width: 100%; background: #1a1a1a; margin: 20px 0; box-shadow: 0 8px 30px rgba(0,0,0,0.4); border: 6px solid #f5f0e8; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>#video { width: 100%; display: none; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>#video.active { display: block; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.countdown { font-size: 4rem; font-weight: 700; margin: 20px 0; color: #f5f0e8; animation: pulse 1s ease; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>@keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.8; } }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.pose-msg { background: rgba(245,240,232,0.15); padding: 15px; margin: 15px 0; font-style: italic; color: #f5f0e8; font-size: 1.1rem; border-left: 3px solid #f5f0e8; border-right: 3px solid #f5f0e8; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 15px; margin: 20px 0; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.grid-item { position: relative; cursor: pointer; border-radius: 8px; overflow: hidden; border: 3px solid rgba(245,240,232,0.3); transition: all 0.3s; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.grid-item:hover { transform: scale(1.03); border-color: #f5f0e8; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.grid-item.edited::after { content: "✓"; position: absolute; top: 6px; right: 6px; background: #5C1A25; color: #f5f0e8; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.grid-item img { width: 100%; height: 100%; object-fit: cover; display: block; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>/* PHOTO STRIP WITH WHITE BORDERS */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.photo-strip { background: #f5f0e8; padding: 20px; margin: 18px 0; box-shadow: 0 8px 30px rgba(0,0,0,0.3); position: relative; color: #2c241b; border: 12px solid #ffffff; border-radius: 4px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.photo-strip::before { content: ""; position: absolute; top: -12px; left: -12px; right: -12px; bottom: -12px; border: 3px solid #e0d8cc; pointer-events: none; border-radius: 6px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.strip-content { position: relative; display: grid; gap: 10px; filter: none; transition: filter 0.3s; overflow: hidden; background: #ffffff; padding: 8px; border-radius: 2px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.strip-content.vintage-glare { filter: brightness(1.08) contrast(1.12) sepia(25%) saturate(1.2) drop-shadow(0 0 2px rgba(255,255,200,0.3)); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.strip-content.bw { filter: brightness(1.1) contrast(1.25) grayscale(100%); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.strip-content.color { filter: brightness(1.05) contrast(1.1) saturate(1.1); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.strip-content.grain::after {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background-image: url("image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>pointer-events: none; z-index: 10; mix-blend-mode: overlay;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.strip-img { width: 100%; display: block; object-fit: cover; border: 4px solid #ffffff; border-radius: 2px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.strip-4 { grid-template-rows: repeat(4, 1fr); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.strip-6 { grid-template-rows: repeat(6, 1fr); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.strip-landscape-row-4 { grid-template-columns: repeat(4, 1fr); grid-template-rows: 1fr; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.strip-landscape-row-6 { grid-template-columns: repeat(6, 1fr); grid-template-rows: 1fr; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.strip-2x2 { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.strip-3x3 { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); }</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>/* Separate photo with white border */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.separate-photo-strip { background: #f5f0e8; padding: 15px; margin: 15px 0; box-shadow: 0 6px 20px rgba(0,0,0,0.2); position: relative; color: #2c241b; border: 10px solid #ffffff; border-radius: 4px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.separate-photo-content { background: #ffffff; padding: 6px; border-radius: 2px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.separate-photo-content img { width: 100%; display: block; object-fit: cover; border: 3px solid #ffffff; border-radius: 2px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.filter-toggle { display: flex; justify-content: center; gap: 12px; margin: 20px 0; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.filter-toggle button {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 10px 22px; border: 2px solid rgba(201,184,164,0.5); background: transparent;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer; transition: all 0.3s; font-family: 'Quicksand', sans-serif; font-size: 0.95rem; font-weight: 500; color: #f5f0e8;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.filter-toggle button:hover { background: rgba(245,240,232,0.1); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.filter-toggle button.active { border-color: #f5f0e8; background: #f5f0e8; color: #5C1A25; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.customization-section { background: rgba(245,240,232,0.12); padding: 20px; margin: 20px 0; border: 2px solid rgba(201,184,164,0.3); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.customization-section label { display: block; margin-bottom: 8px; color: #f5f0e8; font-size: 1rem; font-weight: 500; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.customization-section input[type="text"] { width: 100%; padding: 10px 12px; border: 2px solid rgba(201,184,164,0.4); background: rgba(245,240,232,0.1); font-family: 'Quicksand', sans-serif; font-size: 0.95rem; color: #f5f0e8; margin-bottom: 15px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.customization-section input:focus { outline: none; border-color: #f5f0e8; background: rgba(245,240,232,0.15); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.customization-section input::placeholder { color: rgba(245,240,232,0.5); }</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.toggle-container { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 15px 0; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.toggle-label { color: #f5f0e8; font-size: 0.95rem; font-weight: 500; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.toggle-switch { position: relative; width: 50px; height: 26px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.toggle-switch input { opacity: 0; width: 0; height: 0; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(201,184,164,0.4); transition: 0.3s; border-radius: 26px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.toggle-slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 4px; bottom: 4px; background-color: #f5f0e8; transition: 0.3s; border-radius: 50%; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>input:checked + .toggle-slider { background-color: #f5f0e8; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>input:checked + .toggle-slider:before { transform: translateX(24px); background-color: #5C1A25; }</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.date-input-container { margin-top: 15px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, opacity 0.3s ease; opacity: 0; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.date-input-container.show { max-height: 80px; opacity: 1; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.date-input-container input[type="date"] { width: 100%; padding: 10px 12px; border: 2px solid rgba(201,184,164,0.4); background: rgba(245,240,232,0.1); font-family: 'Quicksand', sans-serif; font-size: 0.95rem; color: #f5f0e8; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>#errorMsg { color: #ff9e9e; margin: 15px 0; font-size: 1rem; padding: 12px; background: rgba(139,35,35,0.2); border: 1px solid rgba(255,158,158,0.3); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.hidden { display: none !important; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>input[type="file"] { display: none; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.upload-trigger { display: inline-block; padding: 18px; margin: 12px 0; background: #f5f0e8; color: #5C1A25; cursor: pointer; width: 100%; font-size: 1rem; font-family: 'Quicksand', sans-serif; font-weight: 600; transition: all 0.3s; letter-spacing: 2px; text-transform: uppercase; border: 2px solid #f5f0e8; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.upload-trigger:hover { background: #e8dfd0; transform: translateY(-2px); }</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.preview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 12px; margin-top: 15px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.preview-grid img { width: 100%; border: 3px solid #f5f0e8; box-shadow: 0 3px 10px rgba(0,0,0,0.3); }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.loading { display: inline-block; width: 18px; height: 18px; border: 3px solid rgba(245,240,232,0.3); border-top-color: #f5f0e8; border-radius: 50%; animation: spin 1s ease-in-out infinite; margin-left: 10px; vertical-align: middle; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>@keyframes spin { to { transform: rotate(360deg); } }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.modal-overlay {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>position: fixed; top: 0; left: 0; width: 100%; height: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(20,5,8,0.9); z-index: 2000;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: none; align-items: center; justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.modal-overlay.active { display: flex; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.modal-content {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #f5f0e8; padding: 25px; border-radius: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>max-width: 550px; width: 100%; text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 20px 50px rgba(0,0,0,0.6); color: #2c241b;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.modal-content h3 { color: #4a3728; margin-bottom: 15px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.editor-preview { width: 100%; max-height: 220px; object-fit: contain; background: #fff; margin: 15px 0; border: 4px solid #1a1a1a; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.editor-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 12px 0; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.editor-controls button {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 7px 14px; background: #5C1A25; color: #f5f0e8; border: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer; font-family: 'Quicksand', sans-serif; font-weight: 500;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transition: 0.3s;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.editor-controls button:hover { background: #4A1220; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.slider-group { margin: 8px 0; text-align: left; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.slider-group label { display: block; margin-bottom: 4px; font-size: 0.85rem; color: #4a3728; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.slider-group input[type="range"] { width: 100%; accent-color: #5C1A25; }</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.crop-container {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>position: relative; width: 100%; height: 240px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #fff; margin: 12px 0; overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 4px solid #1a1a1a; touch-action: none;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.crop-image {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>position: absolute; top: 0; left: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transform-origin: center center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: grab; max-width: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>user-select: none; -webkit-user-drag: none;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.crop-image:active { cursor: grabbing; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.crop-frame {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>position: absolute; top: 50%; left: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transform: translate(-50%, -50%);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 180px; height: 180px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 3px solid #5C1A25;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 0 0 9999px rgba(0,0,0,0.6);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>pointer-events: none; z-index: 10;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.crop-frame::before, .crop-frame::after {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>content: ""; position: absolute; background: rgba(92,26,37,0.3);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.crop-frame::before { top: 33.33%; left: 0; right: 0; height: 1px; box-shadow: 0 60px 0 rgba(92,26,37,0.3); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.crop-frame::after { left: 33.33%; top: 0; bottom: 0; width: 1px; box-shadow: 60px 0 0 rgba(92,26,37,0.3); }</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.crop-controls { display: flex; justify-content: center; gap: 8px; margin: 8px 0; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.crop-controls button {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 6px 12px; background: #5C1A25; color: #f5f0e8; border: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer; font-family: 'Quicksand', sans-serif; font-weight: 500;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.crop-controls button:hover { background: #4A1220; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.crop-hint { font-size: 0.8rem; color: #6b5b4f; margin: 6px 0; font-style: italic; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>@media (max-width: 480px) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.main-wrapper { padding: 15px; }</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.number-grid { grid-template-columns: 1fr; }</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.layout-grid { grid-template-columns: 1fr; }</p>
+<p class="p1"><span class="Apple-converted-space">      </span>h1 { font-size: 2rem; }</p>
+<p class="p1"><span class="Apple-converted-space">      </span>h2 { font-size: 1.3rem; }</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.photo-strip { padding: 12px; }</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.photo-strip::before { border-width: 8px; }</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.crop-container { height: 200px; }</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.crop-frame { width: 150px; height: 150px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="main-wrapper"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- STEP 1: Landing --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="step1" class="step active"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h1&gt;Photobooth&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p class="subtitle"&gt;Capture Your Moment&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="btn" id="btnCamera"&gt;Use Camera&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;label class="upload-trigger" for="fileInput"&gt;Upload Photos&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;input type="file" id="fileInput" accept="image/*" multiple&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p id="errorMsg"&gt;&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- STEP 2: Layout Selection --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="step2" class="step"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h1&gt;Choose Your Layout&lt;/h1&gt;</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="number-selection"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;1. Number of Photos&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p style="color:#d4c9b8; font-size:0.9rem; margin-bottom:10px;"&gt;How many photos would you like?&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="number-grid"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="number-option" data-count="4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h4&gt;4 Photos&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;Classic photobooth strip&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="number-option" data-count="6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h4&gt;6 Photos&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;Extended memories&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="layout-selection"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;2. Choose Layout Style&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p style="color:#d4c9b8; font-size:0.9rem; margin-bottom:10px;"&gt;Select how your photos will be arranged:&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="layout-grid" id="layoutGrid"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div id="uploadSection" class="hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Upload Your Photos&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p style="margin-bottom:10px; color:#d4c9b8; font-size:0.9rem;"&gt;Select up to &lt;span id="uploadLimit"&gt;6&lt;/span&gt; photos&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label class="upload-trigger" for="fileInputStep2"&gt;Choose Photos&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="file" id="fileInputStep2" accept="image/*" multiple&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="previewContainer" class="preview-grid hidden"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p id="uploadStatus" style="margin:8px 0; font-style:italic; color:#d4c9b8; font-size:0.85rem;"&gt;&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="btn" id="btnStart" disabled&gt;Continue&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="btn secondary" id="btnBack1"&gt;Back&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- STEP 3: Capture --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="step3" class="step"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h1 id="captureTitle"&gt;Prepare&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="video-wrapper"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;video id="video" autoplay playsinline muted&gt;&lt;/video&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div id="countdown" class="countdown hidden"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div id="poseMsg" class="pose-msg hidden"&gt;Adjust your pose and get ready&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="btn secondary" id="btnBack2"&gt;Back&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- STEP 3.5: Review &amp; Edit Photos --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="step3_5" class="step"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h1&gt;Review &amp; Edit&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p style="color:#d4c9b8; margin-bottom:15px; font-size:0.95rem;"&gt;Tap any photo to edit it. Click "Continue" when ready.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div id="reviewGrid" class="photo-grid"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="btn" id="btnContinueFromGrid"&gt;Continue&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="btn secondary" id="btnBackToCapture"&gt;Back&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- STEP 4: Results --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="step4" class="step"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h1&gt;Your Photobooth&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div id="resultsContainer"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="filter-toggle"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button id="filterBW"&gt;B&amp;W&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button id="filterColor" class="active"&gt;Color&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="customization-section"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label for="customNote"&gt;Add a Note (Optional)&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="text" id="customNote" placeholder="Enter your message here..." maxlength="50"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="toggle-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;span class="toggle-label"&gt;Date Stamp&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;label class="toggle-switch"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;input type="checkbox" id="dateStampToggle" checked&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="toggle-slider"&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="date-input-container show" id="dateInputContainer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;input type="date" id="customDate"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="btn" id="btnDownload"&gt;Download&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="btn secondary" id="btnRestart"&gt;Start Over&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- LIGHTING TIP MODAL --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div id="lightingModal" class="modal-overlay"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="modal-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h3&gt;💡 Lighting Tip&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p style="margin:15px 0; line-height:1.6; color:#4a3728;"&gt;For the best results, face a soft light source like a window or lamp. Keep bright lights behind you to avoid harsh shadows on your face. Good lighting makes all the difference!&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="btn small" id="btnStartCamera" style="margin-top:10px;"&gt;Got it, Start Camera&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="btn secondary small" id="btnCancelLighting" style="margin-top:5px;"&gt;Cancel&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- EDITOR MODAL --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div id="editorModal" class="modal-overlay"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="modal-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Edit Photo &lt;span id="editPhotoNum"&gt;1&lt;/span&gt;&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div id="normalPreview"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;img id="editorPreview" class="editor-preview" src="" alt="Preview"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div id="cropPreview" class="hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="crop-container" id="cropContainer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;img id="cropImage" class="crop-image" src="" alt="Crop"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="crop-frame"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="crop-controls"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button id="btnZoomOut"&gt;− Zoom&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button id="btnZoomIn"&gt;Zoom +&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button id="btnResetCrop"&gt;Reset&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="crop-hint"&gt;Drag to move • Scroll/Pinch to zoom&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="editor-controls"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button id="btnRotate"&gt;↻ Rotate&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button id="btnFlipH"&gt;↔ Flip H&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button id="btnFlipV"&gt;↕ Flip V&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button id="btnCrop" style="background:#7a4a55;"&gt;✂ Crop&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="slider-group"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label&gt;Brightness&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="range" id="editBrightness" min="50" max="150" value="100"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="slider-group"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label&gt;Contrast&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="range" id="editContrast" min="50" max="150" value="100"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div style="margin-top:12px;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="btn small" id="btnApplyCrop" style="display:none; background:#7a4a55; margin-bottom:8px;"&gt;Apply Crop&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="btn small" id="btnApplyExit"&gt;Apply &amp; Exit&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const state = {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>mode: null,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>count: null,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>orientation: null,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>photos: [],</p>
+<p class="p1"><span class="Apple-converted-space">      </span>editedPhotos: [],</p>
+<p class="p1"><span class="Apple-converted-space">      </span>editingIndex: null,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>currentFilter: 'vintage-glare',</p>
+<p class="p1"><span class="Apple-converted-space">      </span>stream: null</p>
+<p class="p1"><span class="Apple-converted-space">    </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const steps = {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>1: document.getElementById('step1'),</p>
+<p class="p1"><span class="Apple-converted-space">      </span>2: document.getElementById('step2'),</p>
+<p class="p1"><span class="Apple-converted-space">      </span>3: document.getElementById('step3'),</p>
+<p class="p1"><span class="Apple-converted-space">      </span>3.5: document.getElementById('step3_5'),</p>
+<p class="p1"><span class="Apple-converted-space">      </span>4: document.getElementById('step4')</p>
+<p class="p1"><span class="Apple-converted-space">    </span>};</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const video = document.getElementById('video');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const errorMsg = document.getElementById('errorMsg');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const dateStampToggle = document.getElementById('dateStampToggle');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const dateInputContainer = document.getElementById('dateInputContainer');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const customDateInput = document.getElementById('customDate');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>let cropState = { scale: 1, translateX: 0, translateY: 0, isDragging: false, startX: 0, startY: 0, startTranslateX: 0, startTranslateY: 0 };</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.addEventListener('DOMContentLoaded', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>customDateInput.value = new Date().toISOString().split('T')[0];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>dateStampToggle.addEventListener('change', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>dateInputContainer.classList.toggle('show', dateStampToggle.checked);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (dateStampToggle.checked &amp;&amp; !customDateInput.value) customDateInput.value = new Date().toISOString().split('T')[0];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function showStep(n) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>Object.values(steps).forEach(s =&gt; s.classList.remove('active'));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>steps[n].classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (n === 1) resetAll();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Lighting Modal</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('btnCamera').addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('lightingModal').classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('btnStartCamera').addEventListener('click', async () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('lightingModal').classList.remove('active');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>errorMsg.textContent = '';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const devices = await navigator.mediaDevices.enumerateDevices();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (devices.filter(d =&gt; d.kind === 'videoinput').length === 0) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>errorMsg.innerHTML = 'No camera detected. Please use upload.';</p>
+<p class="p1"><span class="Apple-converted-space">          </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const testStream = await navigator.mediaDevices.getUserMedia({ video: { width: 640, height: 480 }, audio: false });</p>
+<p class="p1"><span class="Apple-converted-space">        </span>testStream.getTracks().forEach(t =&gt; t.stop());</p>
+<p class="p1"><span class="Apple-converted-space">        </span>state.mode = 'camera';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>showStep(2);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} catch (err) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>errorMsg.innerHTML = 'Camera access failed. Please check permissions.';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('btnCancelLighting').addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('lightingModal').classList.remove('active');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('fileInput').addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>state.mode = 'upload';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>showStep(2);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('uploadSection').classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('btnBack1').addEventListener('click', () =&gt; showStep(1));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('btnBack2').addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>stopCamera();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>showStep(2);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('btnBackToCapture').addEventListener('click', () =&gt; showStep(3));</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Number Selection</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.querySelectorAll('.number-option').forEach(opt =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>opt.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.querySelectorAll('.number-option').forEach(o =&gt; o.classList.remove('selected'));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>opt.classList.add('selected');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>state.count = parseInt(opt.dataset.count);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('uploadLimit').textContent = state.count;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('fileInputStep2').max = state.count;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>updateLayoutOptions();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>checkContinueBtn();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Dynamic Layout Options</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function updateLayoutOptions() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const grid = document.getElementById('layoutGrid');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!state.count) return;</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>let html = '';</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (state.count === 4) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>html = `</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="layout-option" data-layout="vertical-strip"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="layout-visual"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="vertical-strip-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="layout-photo"&gt;&lt;/div&gt;&lt;div class="layout-photo"&gt;&lt;/div&gt;&lt;div class="layout-photo"&gt;&lt;/div&gt;&lt;div class="layout-photo"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="layout-title"&gt;Vertical Strip&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="layout-desc"&gt;4 photos in 1 column (4×1)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="layout-option" data-layout="landscape"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="layout-visual"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="landscape-row-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="layout-photo"&gt;&lt;/div&gt;&lt;div class="layout-photo"&gt;&lt;/div&gt;&lt;div class="layout-photo"&gt;&lt;/div&gt;&lt;div class="layout-photo"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="layout-title"&gt;Landscape&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="layout-desc"&gt;4 photos in 1 row (1×4)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="layout-option" data-layout="grid-2x2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="layout-visual"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="grid-2x2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="layout-photo"&gt;&lt;/div&gt;&lt;div class="layout-photo"&gt;&lt;/div&gt;&lt;div class="layout-photo"&gt;&lt;/div&gt;&lt;div class="layout-photo"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="layout-title"&gt;2×2 Grid&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="layout-desc"&gt;4 photos in square grid&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="layout-option" data-layout="separate"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="layout-visual"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="separate-photos-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="sep-photo"&gt;&lt;/div&gt;&lt;div class="sep-photo"&gt;&lt;/div&gt;&lt;div class="sep-photo"&gt;&lt;/div&gt;&lt;div class="sep-photo"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="layout-title"&gt;Separate Files&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="layout-desc"&gt;4 individual photos with borders&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} else if (state.count === 6) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>html = `</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="layout-option" data-layout="vertical-strip"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="layout-visual"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="vertical-strip-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="layout-photo"&gt;&lt;/div&gt;&lt;div class="layout-photo"&gt;&lt;/div&gt;&lt;div class="layout-photo"&gt;&lt;/div&gt;&lt;div class="layout-photo"&gt;&lt;/div&gt;&lt;div class="layout-photo"&gt;&lt;/div&gt;&lt;div class="layout-photo"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="layout-title"&gt;Vertical Strip&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="layout-desc"&gt;6 photos in 1 column (6×1)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="layout-option" data-layout="landscape"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="layout-visual"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="landscape-row-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="layout-photo"&gt;&lt;/div&gt;&lt;div class="layout-photo"&gt;&lt;/div&gt;&lt;div class="layout-photo"&gt;&lt;/div&gt;&lt;div class="layout-photo"&gt;&lt;/div&gt;&lt;div class="layout-photo"&gt;&lt;/div&gt;&lt;div class="layout-photo"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="layout-title"&gt;Landscape&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="layout-desc"&gt;6 photos in 1 row (1×6)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="layout-option" data-layout="grid-3x3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="layout-visual"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="grid-3x3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="layout-photo"&gt;&lt;/div&gt;&lt;div class="layout-photo"&gt;&lt;/div&gt;&lt;div class="layout-photo"&gt;&lt;/div&gt;&lt;div class="layout-photo"&gt;&lt;/div&gt;&lt;div class="layout-photo"&gt;&lt;/div&gt;&lt;div class="layout-photo"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="layout-title"&gt;3×3 Grid&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="layout-desc"&gt;6 photos in 3×2 grid&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="layout-option" data-layout="separate"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="layout-visual"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="separate-photos-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="sep-photo"&gt;&lt;/div&gt;&lt;div class="sep-photo"&gt;&lt;/div&gt;&lt;div class="sep-photo"&gt;&lt;/div&gt;&lt;div class="sep-photo"&gt;&lt;/div&gt;&lt;div class="sep-photo"&gt;&lt;/div&gt;&lt;div class="sep-photo"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="layout-title"&gt;Separate Files&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="layout-desc"&gt;6 individual photos with borders&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>grid.innerHTML = html;</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>grid.querySelectorAll('.layout-option').forEach(opt =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>opt.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>grid.querySelectorAll('.layout-option').forEach(o =&gt; o.classList.remove('selected'));</p>
+<p class="p1"><span class="Apple-converted-space">          </span>opt.classList.add('selected');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>state.orientation = opt.dataset.layout;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>checkContinueBtn();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function checkContinueBtn() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const valid = state.count &amp;&amp; state.orientation &amp;&amp;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>(state.mode === 'camera' || (state.mode === 'upload' &amp;&amp; state.photos.length === state.count));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('btnStart').disabled = !valid;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('fileInputStep2').addEventListener('change', (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const files = Array.from(e.target.files);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (files.length === 0) return;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const limit = state.count;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (files.length &gt; limit) errorMsg.textContent = `Only first ${limit} photos used.`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>else errorMsg.textContent = '';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>state.photos = [];</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const pc = document.getElementById('previewContainer');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>pc.classList.remove('hidden'); pc.innerHTML = '';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>let loaded = 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>files.slice(0, limit).forEach(file =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const reader = new FileReader();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>reader.onload = (ev) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const img = new Image();</p>
+<p class="p1"><span class="Apple-converted-space">          </span>img.onload = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const c = document.createElement('canvas');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>c.width = img.width; c.height = img.height;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const ctx = c.getContext('2d');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.filter = 'brightness(1.08) contrast(1.12) sepia(25%) saturate(1.2)';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.drawImage(img, 0, 0);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>state.photos.push(c.toDataURL('image/jpeg', 0.9));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const pImg = document.createElement('img');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>pImg.src = state.photos[state.photos.length-1];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>pc.appendChild(pImg);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>loaded++;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('uploadStatus').textContent = `Loaded ${loaded}/${limit}`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (loaded === limit) checkContinueBtn();</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p1"><span class="Apple-converted-space">          </span>img.src = ev.target.result;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>reader.readAsDataURL(file);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('btnStart').addEventListener('click', async () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!state.count || !state.orientation) { errorMsg.textContent = 'Select layout first.'; return; }</p>
+<p class="p1"><span class="Apple-converted-space">      </span>showStep(3);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (state.mode === 'camera') await initCamera();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>else goToReviewGrid();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>async function initCamera() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('captureTitle').textContent = 'Camera Preview';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>errorMsg.textContent = '';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>state.stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user', width: 1280, height: 720 }, audio: false });</p>
+<p class="p1"><span class="Apple-converted-space">        </span>video.srcObject = state.stream;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>video.classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>video.onloadedmetadata = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>document.getElementById('captureTitle').textContent = `Photo 1 of ${state.count}`;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>setTimeout(captureSeq, 2000);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} catch (err) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>errorMsg.innerHTML = 'Camera error. Switching to upload.';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>setTimeout(() =&gt; { state.mode = 'upload'; showStep(2); }, 1500);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function stopCamera() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (state.stream) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>state.stream.getTracks().forEach(track =&gt; track.stop());</p>
+<p class="p1"><span class="Apple-converted-space">        </span>state.stream = null;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>video.srcObject = null;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>video.classList.remove('active');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>let currentCap = 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function captureSeq() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (currentCap &gt;= state.count) {<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>stopCamera();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>goToReviewGrid();<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>return;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const cd = document.getElementById('countdown');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const pm = document.getElementById('poseMsg');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cd.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>let c = 3; cd.textContent = c;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const t = setInterval(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>c--;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (c &gt; 0) cd.textContent = c;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>else {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>clearInterval(t);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>cd.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const cvs = document.createElement('canvas');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>cvs.width = video.videoWidth; cvs.height = video.videoHeight;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const ctx = cvs.getContext('2d');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>ctx.filter = 'brightness(1.08) contrast(1.12) sepia(25%) saturate(1.2)';</p>
+<p class="p1"><span class="Apple-converted-space">          </span>ctx.drawImage(video, 0, 0);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>state.photos.push(cvs.toDataURL('image/jpeg', 0.95));</p>
+<p class="p1"><span class="Apple-converted-space">          </span>currentCap++;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>if (currentCap &lt; state.count) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>pm.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setTimeout(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>pm.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">              </span>document.getElementById('captureTitle').textContent = `Photo ${currentCap+1} of ${state.count}`;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>captureSeq();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}, 2000);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>stopCamera();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>goToReviewGrid();</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}, 1000);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function goToReviewGrid() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>currentCap = 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>state.editedPhotos = state.photos.map(() =&gt; false);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>renderReviewGrid();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>showStep(3.5);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function renderReviewGrid() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const grid = document.getElementById('reviewGrid');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>grid.innerHTML = '';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>state.photos.forEach((src, i) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const item = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>item.className = `grid-item ${state.editedPhotos[i] ? 'edited' : ''}`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>item.innerHTML = `&lt;img src="${src}" alt="Photo ${i+1}"&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>item.addEventListener('click', () =&gt; openEditor(i));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>grid.appendChild(item);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function openEditor(index) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>state.editingIndex = index;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('editorModal').classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('editPhotoNum').textContent = index + 1;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>state.isCropping = false;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('editBrightness').value = 100;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('editContrast').value = 100;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>updateEditorPreview();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function updateEditorPreview() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const np = document.getElementById('normalPreview');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const cp = document.getElementById('cropPreview');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const img = document.getElementById('editorPreview');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (state.isCropping) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>np.classList.add('hidden'); cp.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('btnApplyCrop').style.display = 'inline-block';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>initCrop();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>np.classList.remove('hidden'); cp.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('btnApplyCrop').style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>img.src = state.photos[state.editingIndex];</p>
+<p class="p1"><span class="Apple-converted-space">        </span>img.style.transform = `translate(0,0) scale(1)`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>img.style.filter = `brightness(${document.getElementById('editBrightness').value}%) contrast(${document.getElementById('editContrast').value}%)`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function initCrop() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const container = document.getElementById('cropContainer');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const cropImg = document.getElementById('cropImage');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cropState = { scale: 1, translateX: 0, translateY: 0, isDragging: false, startX: 0, startY: 0, startTranslateX: 0, startTranslateY: 0 };</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cropImg.src = state.photos[state.editingIndex];</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cropImg.onload = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const cRect = container.getBoundingClientRect();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const iRect = cropImg.getBoundingClientRect();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>cropState.translateX = (cRect.width - iRect.width) / 2;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>cropState.translateY = (cRect.height - iRect.height) / 2;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>updateCropTransform();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>};</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const newCropImg = cropImg.cloneNode(true);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cropImg.parentNode.replaceChild(newCropImg, cropImg);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>attachCropListeners(newCropImg, container);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function attachCropListeners(cropImg, container) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const startDrag = (e) =&gt; { e.preventDefault(); cropState.isDragging = true; const p = e.touches ? e.touches[0] : e; cropState.startX = p.clientX; cropState.startY = p.clientY; cropState.startTranslateX = cropState.translateX; cropState.startTranslateY = cropState.translateY; cropImg.style.cursor = 'grabbing'; };</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const drag = (e) =&gt; { if (!cropState.isDragging) return; e.preventDefault(); const p = e.touches ? e.touches[0] : e; cropState.translateX = cropState.startTranslateX + (p.clientX - cropState.startX); cropState.translateY = cropState.startTranslateY + (p.clientY - cropState.startY); updateCropTransform(); };</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const endDrag = () =&gt; { cropState.isDragging = false; cropImg.style.cursor = 'grab'; };</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cropImg.addEventListener('mousedown', startDrag);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cropImg.addEventListener('touchstart', startDrag, { passive: false });</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.addEventListener('mousemove', drag);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.addEventListener('touchmove', drag, { passive: false });</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.addEventListener('mouseup', endDrag);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.addEventListener('touchend', endDrag);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>container.addEventListener('wheel', (e) =&gt; { e.preventDefault(); adjustZoom(e.deltaY &gt; 0 ? -0.1 : 0.1); }, { passive: false });</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function updateCropTransform() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('cropImage').style.transform = `translate(${cropState.translateX}px, ${cropState.translateY}px) scale(${cropState.scale})`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function adjustZoom(d) { cropState.scale = Math.max(0.5, Math.min(5, cropState.scale + d)); updateCropTransform(); }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('btnZoomIn').addEventListener('click', () =&gt; adjustZoom(0.15));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('btnZoomOut').addEventListener('click', () =&gt; adjustZoom(-0.15));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('btnResetCrop').addEventListener('click', () =&gt; { cropState.scale = 1; cropState.translateX = 0; cropState.translateY = 0; updateCropTransform(); });</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('btnCrop').addEventListener('click', () =&gt; { state.isCropping = !state.isCropping; document.getElementById('btnCrop').style.background = state.isCropping ? '#4A1220' : '#7a4a55'; updateEditorPreview(); });</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('btnApplyCrop').addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const container = document.getElementById('cropContainer');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const cropImg = document.getElementById('cropImage');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const cRect = container.getBoundingClientRect();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const fw = window.innerWidth &lt;= 480 ? 150 : 180;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const fh = fw;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const fx = (cRect.width - fw) / 2;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const fy = (cRect.height - fh) / 2;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const srcX = (fx - cropState.translateX) / cropState.scale;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const srcY = (fy - cropState.translateY) / cropState.scale;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const srcW = fw / cropState.scale;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const srcH = fh / cropState.scale;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const c = document.createElement('canvas');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>c.width = srcW; c.height = srcH;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const ctx = c.getContext('2d');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const tempImg = new Image();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>tempImg.onload = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.drawImage(tempImg, srcX, srcY, srcW, srcH, 0, 0, srcW, srcH);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>state.photos[state.editingIndex] = c.toDataURL('image/jpeg', 0.95);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>state.isCropping = false;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('btnCrop').style.background = '#7a4a55';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>updateEditorPreview();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>};</p>
+<p class="p1"><span class="Apple-converted-space">      </span>tempImg.src = state.photos[state.editingIndex];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>let editorTransform = { rot: 0, sx: 1, sy: 1 };</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function updateEditorTransformUI() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const img = document.getElementById('editorPreview');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>img.style.transform = `rotate(${editorTransform.rot}deg) scale(${editorTransform.sx}, ${editorTransform.sy})`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('btnRotate').addEventListener('click', () =&gt; { editorTransform.rot = (editorTransform.rot + 90) % 360; updateEditorTransformUI(); });</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('btnFlipH').addEventListener('click', () =&gt; { editorTransform.sx *= -1; updateEditorTransformUI(); });</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('btnFlipV').addEventListener('click', () =&gt; { editorTransform.sy *= -1; updateEditorTransformUI(); });</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('editBrightness').addEventListener('input', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('editorPreview').style.filter = `brightness(${document.getElementById('editBrightness').value}%) contrast(${document.getElementById('editContrast').value}%)`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('editContrast').addEventListener('input', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('editorPreview').style.filter = `brightness(${document.getElementById('editBrightness').value}%) contrast(${document.getElementById('editContrast').value}%)`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('btnApplyExit').addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const img = document.getElementById('editorPreview');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const tempImg = new Image();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>tempImg.onload = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const c = document.createElement('canvas');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const isRotated = editorTransform.rot === 90 || editorTransform.rot === 270;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>c.width = isRotated ? tempImg.height : tempImg.width;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>c.height = isRotated ? tempImg.width : tempImg.height;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const ctx = c.getContext('2d');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.translate(c.width/2, c.height/2);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.rotate(editorTransform.rot * Math.PI / 180);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.scale(editorTransform.sx, editorTransform.sy);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.filter = `brightness(${document.getElementById('editBrightness').value}%) contrast(${document.getElementById('editContrast').value}%)`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.drawImage(tempImg, -tempImg.width/2, -tempImg.height/2);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>state.photos[state.editingIndex] = c.toDataURL('image/jpeg', 0.95);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>state.editedPhotos[state.editingIndex] = true;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('editorModal').classList.remove('active');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>editorTransform = { rot: 0, sx: 1, sy: 1 };</p>
+<p class="p1"><span class="Apple-converted-space">        </span>renderReviewGrid();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>};</p>
+<p class="p1"><span class="Apple-converted-space">      </span>tempImg.src = state.photos[state.editingIndex];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('btnContinueFromGrid').addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>renderResults();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>showStep(4);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function renderResults() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const container = document.getElementById('resultsContainer');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>container.innerHTML = '';</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (state.orientation === 'separate') {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>state.photos.forEach((src, i) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const wrapper = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>wrapper.className = 'separate-photo-strip';</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>let dateHTML = '';</p>
+<p class="p1"><span class="Apple-converted-space">          </span>if (dateStampToggle.checked &amp;&amp; customDateInput.value) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const d = new Date(customDateInput.value).toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>dateHTML = `&lt;p style="text-align:center; margin-top:8px; font-style:italic; font-size:0.95rem; color:#5C1A25; font-family:'Playfair Display', serif;"&gt;${d}&lt;/p&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>wrapper.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="separate-photo-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;img src="${src}" class="strip-img" style="filter: brightness(1.08) contrast(1.12) sepia(25%) saturate(1.2) drop-shadow(0 0 2px rgba(255,255,200,0.3));" data-filter="vintage-glare"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>${dateHTML}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>container.appendChild(wrapper);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>const stripWrapper = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>stripWrapper.className = 'photo-strip';</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>let dateHTML = '';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (dateStampToggle.checked &amp;&amp; customDateInput.value) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const d = new Date(customDateInput.value).toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>dateHTML = `&lt;p style="text-align:center; margin-top:12px; font-style:italic; font-size:1.05rem; color:#5C1A25; font-family:'Playfair Display', serif;"&gt;${d}&lt;/p&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>let stripClass = 'strip-content grain vintage-glare';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (state.count === 4) stripClass += ' strip-4';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>else stripClass += ' strip-6';</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (state.orientation === 'landscape') {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>stripClass += (state.count === 4 ? ' strip-landscape-row-4' : ' strip-landscape-row-6');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} else if (state.orientation === 'grid-2x2') {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>stripClass += ' strip-2x2';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} else if (state.orientation === 'grid-3x3') {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>stripClass += ' strip-3x3';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>let photosHTML = '';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>state.photos.forEach(src =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>photosHTML += `&lt;img src="${src}" class="strip-img"&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>stripWrapper.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="${stripClass}"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>${photosHTML}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>${dateHTML}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>`;</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>container.appendChild(stripWrapper);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Filter toggle</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('filterBW').addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>state.currentFilter = 'bw';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('filterBW').classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('filterColor').classList.remove('active');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>applyFilter();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('filterColor').addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>state.currentFilter = 'color';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('filterColor').classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('filterBW').classList.remove('active');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>applyFilter();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function applyFilter() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const strips = document.querySelectorAll('.strip-content');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const separateImgs = document.querySelectorAll('.separate-photo-content img');</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>strips.forEach(strip =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>strip.classList.remove('vintage-glare', 'bw', 'color');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>strip.classList.add(state.currentFilter);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>separateImgs.forEach(img =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>img.removeAttribute('style');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (state.currentFilter === 'bw') {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>img.style.filter = 'brightness(1.1) contrast(1.25) grayscale(100%)';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} else if (state.currentFilter === 'color') {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>img.style.filter = 'brightness(1.05) contrast(1.1) saturate(1.1)';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>img.style.filter = 'brightness(1.08) contrast(1.12) sepia(25%) saturate(1.2) drop-shadow(0 0 2px rgba(255,255,200,0.3))';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('btnDownload').addEventListener('click', async () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const btn = document.getElementById('btnDownload');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const orig = btn.innerHTML;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>btn.innerHTML = 'Preparing... &lt;span class="loading"&gt;&lt;/span&gt;';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>btn.disabled = true;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const note = document.getElementById('customNote').value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const addDate = dateStampToggle.checked;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const dVal = customDateInput.value;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const fClass = state.currentFilter;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (state.orientation === 'separate') {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>for (let i = 0; i &lt; state.count; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!state.photos[i]) continue;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const img = new Image();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>img.src = state.photos[i];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>await new Promise(res =&gt; img.onload = res);</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const c = document.createElement('canvas');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const border = 50;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const textArea = (note || (addDate &amp;&amp; dVal)) ? 100 : 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>c.width = img.width + border * 2;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>c.height = img.height + border * 2 + textArea;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const ctx = c.getContext('2d');</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.fillStyle = '#ffffff';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.fillRect(0, 0, c.width, c.height);</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (fClass === 'bw') ctx.filter = 'brightness(1.1) contrast(1.25) grayscale(100%)';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>else if (fClass === 'color') ctx.filter = 'brightness(1.05) contrast(1.1) saturate(1.1)';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>else ctx.filter = 'brightness(1.08) contrast(1.12) sepia(25%) saturate(1.2)';</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.drawImage(img, border, border);</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (note || (addDate &amp;&amp; dVal)) {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>ctx.filter = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">              </span>ctx.fillStyle = '#5C1A25';</p>
+<p class="p1"><span class="Apple-converted-space">              </span>ctx.textAlign = 'center';</p>
+<p class="p2"><span class="Apple-converted-space">              </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>let yPos = c.height - 30;</p>
+<p class="p2"><span class="Apple-converted-space">              </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>if (addDate &amp;&amp; dVal) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const d = new Date(dVal).toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});</p>
+<p class="p1"><span class="Apple-converted-space">                </span>ctx.font = 'italic 32px "Playfair Display"';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>ctx.fillText(d, c.width/2, yPos);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>yPos -= 50;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>}</p>
+<p class="p2"><span class="Apple-converted-space">              </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>if (note) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>ctx.font = 'italic 48px "Playfair Display"';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>ctx.fillText(note, c.width/2, yPos);</p>
+<p class="p1"><span class="Apple-converted-space">              </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const blob = await new Promise(res =&gt; c.toBlob(res, 'image/jpeg', 0.95));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const url = URL.createObjectURL(blob);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const a = document.createElement('a'); a.href = url; a.download = `photobooth-${i+1}.jpg`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.body.appendChild(a); a.click(); document.body.removeChild(a);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>URL.revokeObjectURL(url);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>await new Promise(r =&gt; setTimeout(r, 200));</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const tc = document.createElement('canvas');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const tCtx = tc.getContext('2d');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const pW = 800, pH = 800, gap = 30, border = 120, r = 8;</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>// Larger bottom margin for readable text</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const bottomMargin = 200;</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>let cW, cH;</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>if (state.orientation === 'vertical-strip') {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cW = pW + border*2;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cH = (pH * state.count) + (gap * (state.count-1)) + border*2 + bottomMargin;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>} else if (state.orientation === 'landscape') {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cW = (pW * state.count) + (gap * (state.count-1)) + border*2;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cH = pH + border*2 + bottomMargin;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const size = state.count === 4 ? 2 : 3;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cW = (pW * size) + (gap * (size-1)) + border*2;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cH = (pH * size) + (gap * (size-1)) + border*2 + bottomMargin;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>tc.width = cW; tc.height = cH;</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>tCtx.fillStyle = '#ffffff';</p>
+<p class="p1"><span class="Apple-converted-space">          </span>tCtx.fillRect(0, 0, cW, cH);</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const innerBorder = 20;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>tCtx.fillStyle = '#f5f0e8';</p>
+<p class="p1"><span class="Apple-converted-space">          </span>tCtx.fillRect(innerBorder, innerBorder, cW - innerBorder*2, cH - innerBorder*2);</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>if (fClass === 'bw') tCtx.filter = 'brightness(1.1) contrast(1.25) grayscale(100%)';</p>
+<p class="p1"><span class="Apple-converted-space">          </span>else if (fClass === 'color') tCtx.filter = 'brightness(1.05) contrast(1.1) saturate(1.1)';</p>
+<p class="p1"><span class="Apple-converted-space">          </span>else tCtx.filter = 'brightness(1.08) contrast(1.12) sepia(25%) saturate(1.2)';</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const imgs = await Promise.all(state.photos.map(src =&gt; new Promise(res =&gt; { const i = new Image(); i.onload = () =&gt; res(i); i.src = src; })));</p>
+<p class="p1"><span class="Apple-converted-space">          </span>imgs.forEach((img, i) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let x, y;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (state.orientation === 'vertical-strip') {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>x = border; y = border + i*(pH+gap);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else if (state.orientation === 'landscape') {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>x = border + i*(pW+gap); y = border;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>const cols = state.orientation === 'grid-3x3' ? 3 : 2;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>const row = Math.floor(i/cols), col = i%cols;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>x = border + col*(pW+gap); y = border + row*(pH+gap);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>tCtx.beginPath(); tCtx.moveTo(x+r, y); tCtx.lineTo(x+pW-r, y); tCtx.quadraticCurveTo(x+pW, y, x+pW, y+r);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>tCtx.lineTo(x+pW, y+pH-r); tCtx.quadraticCurveTo(x+pW, y+pH, x+pW-r, y+pH);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>tCtx.lineTo(x+r, y+pH); tCtx.quadraticCurveTo(x, y+pH, x, y+pH-r);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>tCtx.lineTo(x, y+r); tCtx.quadraticCurveTo(x, y, x+r, y); tCtx.closePath();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>tCtx.save(); tCtx.clip(); tCtx.drawImage(img, x, y, pW, pH); tCtx.restore();</p>
+<p class="p1"><span class="Apple-converted-space">          </span>});</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>tCtx.filter = 'none';</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>// Film grain</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const gc = document.createElement('canvas'); gc.width=cW; gc.height=cH-bottomMargin;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const gctx = gc.getContext('2d');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const id = gctx.createImageData(cW, cH-bottomMargin);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>for(let i=0; i&lt;id.data.length; i+=4) { const v = (Math.random()-0.5)*30; id.data[i]=v; id.data[i+1]=v; id.data[i+2]=v; id.data[i+3]=25; }</p>
+<p class="p1"><span class="Apple-converted-space">          </span>gctx.putImageData(id, 0, 0);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>tCtx.globalCompositeOperation = 'overlay'; tCtx.drawImage(gc, 0, 0); tCtx.globalCompositeOperation = 'source-over';</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>// Text positioning - centered, note above date</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const textStartY = cH - bottomMargin + 60;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>tCtx.fillStyle = '#5C1A25';</p>
+<p class="p1"><span class="Apple-converted-space">          </span>tCtx.textAlign = 'center';</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>let currentY = textStartY;</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>// Note first (above date)</p>
+<p class="p1"><span class="Apple-converted-space">          </span>if (note) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>tCtx.font = 'italic 56px "Playfair Display"';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>tCtx.fillText(note, cW/2, currentY);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>currentY += 70;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>// Date below note</p>
+<p class="p1"><span class="Apple-converted-space">          </span>if (addDate &amp;&amp; dVal) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const d = new Date(dVal).toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>tCtx.font = 'italic 40px "Playfair Display"';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>tCtx.fillText(d, cW/2, currentY);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const blob = await new Promise(res =&gt; tc.toBlob(res, 'image/jpeg', 0.95));</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const url = URL.createObjectURL(blob);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const a = document.createElement('a'); a.href = url; a.download = `photobooth-${Date.now()}.jpg`;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>document.body.appendChild(a); a.click(); document.body.removeChild(a);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>URL.revokeObjectURL(url);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Success popup</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const html = `&lt;div style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#5C1A25;color:#f5f0e8;padding:20px 30px;z-index:3000;max-width:450px;text-align:center;animation:slideUp 0.5s ease;font-family:'Quicksand',sans-serif;box-shadow:0 10px 30px rgba(0,0,0,0.4);border-radius:8px;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;strong style="font-size:1.2rem;display:block;margin-bottom:8px;"&gt;Download Complete&lt;/strong&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;p style="font-size:0.95rem;line-height:1.5;margin:0;"&gt;Your moment has been saved to your device.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button onclick="this.parentElement.remove()" style="margin-top:12px;padding:6px 16px;background:rgba(245,240,232,0.2);border:1px solid rgba(245,240,232,0.4);color:#f5f0e8;cursor:pointer;font-family:'Quicksand',sans-serif;border-radius:15px;"&gt;Close&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const style = document.createElement('style');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>style.textContent = `@keyframes slideUp { from{transform:translate(-50%,100px);opacity:0;} to{transform:translate(-50%,0);opacity:1;} }`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.head.appendChild(style);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.body.insertAdjacentHTML('beforeend', html);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>setTimeout(() =&gt; { const el = document.querySelector('[style*="position:fixed"]'); if(el) el.remove(); }, 7000);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} catch (err) { console.error(err); errorMsg.textContent = 'Download failed.'; }</p>
+<p class="p1"><span class="Apple-converted-space">      </span>btn.innerHTML = orig; btn.disabled = false;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('btnRestart').addEventListener('click', () =&gt; showStep(1));</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function resetAll() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>stopCamera();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>state.photos = []; state.editedPhotos = []; state.editingIndex = null; state.mode = null; state.currentFilter = 'vintage-glare';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>state.count = null; state.orientation = null;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.querySelectorAll('.number-option').forEach(o =&gt; o.classList.remove('selected'));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('layoutGrid').innerHTML = '';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('btnStart').disabled = true;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('uploadSection').classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('previewContainer').classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('previewContainer').innerHTML = '';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('uploadStatus').textContent = '';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('fileInputStep2').value = '';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('customNote').value = '';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>dateStampToggle.checked = true; dateInputContainer.classList.add('show');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>customDateInput.value = new Date().toISOString().split('T')[0];</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('filterColor').classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('filterBW').classList.remove('active');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
